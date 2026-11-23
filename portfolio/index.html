@@ -362,48 +362,588 @@ $(function() {
 					</div>
 				</div>
 		<div class="elementor-element elementor-element-0452694 e-flex e-con-boxed e-con e-parent" data-id="0452694" data-element_type="container" data-e-type="container" id="portfolio-section">
-					<div class="e-con-inner">
-		<div class="elementor-element elementor-element-0b1fa32 e-con-full rpb-gallery e-flex e-con e-child" data-id="0b1fa32" data-element_type="container" data-e-type="container" id="portfolio-section">
-				<div class="elementor-element elementor-element-a117984 elementor-invisible elementor-widget elementor-widget-jkit_heading" data-id="a117984" data-element_type="widget" data-e-type="widget" data-settings="{&quot;_animation&quot;:&quot;slideInLeft&quot;,&quot;_animation_mobile&quot;:&quot;slideInLeft&quot;}" data-widget_type="jkit_heading.default">
-				<div class="elementor-widget-container">
-					<div class="jeg-elementor-kit jkit-heading  align- align-tablet- align-mobile-left jeg_module_521__6a0644cab1376"><div class="heading-section-title  display-inline"><h2 class="heading-title"><span class="style-gradient"><span>Bofast World Portfolio​</span></span></h2></div></div>				</div>
+	<div class="e-con-inner" style="max-width: 1140px; margin: 0 auto; width: 100%; padding: 40px 15px 60px;">
+
+		<style id="custom-portfolio-styles">
+			.portfolio-eyebrow {
+				font-family: 'JetBrains Mono', monospace, 'Ubuntu', sans-serif;
+				font-size: 11px;
+				font-weight: 600;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				color: #20D9A1;
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				margin-bottom: 12px;
+			}
+			.portfolio-eyebrow::before {
+				content: '';
+				display: inline-block;
+				width: 7px;
+				height: 7px;
+				border-radius: 50%;
+				background: #20D9A1;
+			}
+			.portfolio-section-title {
+				font-family: 'Ubuntu', 'DM Sans', sans-serif;
+				font-size: 44px;
+				font-weight: 700;
+				line-height: 1.25;
+				color: #ffffff;
+				margin-bottom: 10px;
+			}
+			.portfolio-section-title span.grad {
+				background: linear-gradient(90deg, #5F39FF 0%, #20D9A1 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+			.portfolio-section-desc {
+				font-family: 'Ubuntu', sans-serif;
+				font-size: 16px;
+				color: #94A3B8;
+				line-height: 1.6;
+				max-width: 650px;
+				margin-bottom: 35px;
+			}
+
+			/* ── PROJECTS GRID ── */
+			.projects-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+				gap: 24px;
+				width: 100%;
+				margin-bottom: 80px;
+			}
+			.project-card {
+				background: #0f1626;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 14px;
+				overflow: hidden;
+				transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+				display: flex;
+				flex-direction: column;
+			}
+			.project-card:hover {
+				border-color: rgba(95, 57, 255, 0.45);
+				transform: translateY(-5px);
+				box-shadow: 0 14px 34px -10px rgba(95, 57, 255, 0.35);
+			}
+			.project-preview {
+				height: 200px;
+				background: #111827;
+				position: relative;
+				overflow: hidden;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+			}
+			.project-preview img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: top center;
+				display: block;
+				transition: transform 0.4s ease;
+			}
+			.project-card:hover .project-preview img {
+				transform: scale(1.05);
+			}
+			.project-body {
+				padding: 24px;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+			}
+			.project-type {
+				font-family: 'JetBrains Mono', monospace, sans-serif;
+				font-size: 10.5px;
+				color: #20D9A1;
+				letter-spacing: 1.5px;
+				text-transform: uppercase;
+				margin-bottom: 8px;
+				font-weight: 600;
+			}
+			.project-name {
+				font-family: 'Ubuntu', sans-serif;
+				font-size: 20px;
+				font-weight: 700;
+				color: #ffffff;
+				margin-bottom: 10px;
+			}
+			.project-desc {
+				font-family: 'Ubuntu', sans-serif;
+				font-size: 14px;
+				color: #94A3B8;
+				line-height: 1.65;
+				margin-bottom: 20px;
+				flex-grow: 1;
+			}
+			.project-footer {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 12px;
+				padding-top: 14px;
+				border-top: 1px solid rgba(255, 255, 255, 0.06);
+			}
+			.project-stack {
+				display: flex;
+				gap: 6px;
+				flex-wrap: wrap;
+			}
+			.project-stack span {
+				font-family: 'Ubuntu', sans-serif;
+				font-size: 11px;
+				color: #CBD5E1;
+				background: rgba(255, 255, 255, 0.06);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				padding: 3px 10px;
+				border-radius: 100px;
+			}
+			.project-url {
+				font-family: 'Ubuntu', sans-serif;
+				font-size: 13px;
+				font-weight: 600;
+				color: #20D9A1;
+				text-decoration: none;
+				display: inline-flex;
+				align-items: center;
+				gap: 4px;
+				white-space: nowrap;
+				transition: color 0.2s, transform 0.2s;
+			}
+			.project-url:hover {
+				color: #5F39FF;
+				transform: translateX(3px);
+			}
+
+			/* ── PLUGINS GRID ── */
+			.plugins-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+				gap: 24px;
+				width: 100%;
+			}
+			.plugin-card {
+				background: #0f1626;
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 14px;
+				padding: 28px;
+				position: relative;
+				overflow: hidden;
+				transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+				display: flex;
+				flex-direction: column;
+			}
+			.plugin-card::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 3px;
+				background: linear-gradient(90deg, #5F39FF, #20D9A1);
+				opacity: 0;
+				transition: opacity 0.3s ease;
+			}
+			.plugin-card:hover {
+				border-color: rgba(95, 57, 255, 0.45);
+				transform: translateY(-5px);
+				box-shadow: 0 14px 34px -10px rgba(95, 57, 255, 0.35);
+			}
+			.plugin-card:hover::before {
+				opacity: 1;
+			}
+			.plugin-card.wip {
+				border-color: rgba(212, 175, 55, 0.2);
+			}
+			.plugin-card.wip::before {
+				background: linear-gradient(90deg, #D4AF37, #F0CC50);
+			}
+			.plugin-card.wip:hover {
+				border-color: rgba(212, 175, 55, 0.4);
+				box-shadow: 0 14px 34px -10px rgba(212, 175, 55, 0.25);
+			}
+			.plugin-icon {
+				width: 46px;
+				height: 46px;
+				border-radius: 10px;
+				background: linear-gradient(135deg, #5F39FF, #20D9A1);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-bottom: 20px;
+				flex-shrink: 0;
+			}
+			.plugin-icon.gold-icon {
+				background: linear-gradient(135deg, #92731A, #D4AF37);
+			}
+			.wip-badge {
+				position: absolute;
+				top: 22px;
+				right: 22px;
+				font-family: 'JetBrains Mono', monospace, sans-serif;
+				font-size: 10px;
+				font-weight: 600;
+				letter-spacing: 1px;
+				color: #F0CC50;
+				background: rgba(212, 175, 55, 0.12);
+				border: 1px solid rgba(212, 175, 55, 0.25);
+				padding: 3px 10px;
+				border-radius: 100px;
+				text-transform: uppercase;
+			}
+			.plugin-name {
+				font-family: 'Ubuntu', sans-serif;
+				font-size: 20px;
+				font-weight: 700;
+				color: #ffffff;
+				margin-bottom: 6px;
+			}
+			.plugin-subtitle {
+				font-family: 'JetBrains Mono', monospace, sans-serif;
+				font-size: 11px;
+				color: #20D9A1;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+				margin-bottom: 14px;
+				font-weight: 600;
+			}
+			.plugin-desc {
+				font-family: 'Ubuntu', sans-serif;
+				font-size: 14px;
+				color: #94A3B8;
+				line-height: 1.65;
+				margin-bottom: 20px;
+				flex-grow: 1;
+			}
+			.plugin-tags {
+				display: flex;
+				gap: 6px;
+				flex-wrap: wrap;
+				margin-bottom: 20px;
+			}
+			.plugin-tag {
+				font-family: 'Ubuntu', sans-serif;
+				font-size: 11px;
+				color: #CBD5E1;
+				background: rgba(255, 255, 255, 0.06);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				padding: 3px 10px;
+				border-radius: 100px;
+			}
+			.plugin-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 6px;
+				font-family: 'Ubuntu', sans-serif;
+				font-size: 13px;
+				font-weight: 600;
+				color: #20D9A1;
+				text-decoration: none;
+				transition: color 0.2s, transform 0.2s;
+				margin-top: auto;
+			}
+			.plugin-link:hover {
+				color: #5F39FF;
+				transform: translateX(3px);
+			}
+
+			@media (max-width: 767px) {
+				.projects-grid, .plugins-grid {
+					grid-template-columns: 1fr;
+				}
+				.portfolio-section-title {
+					font-size: 32px;
+				}
+			}
+		</style>
+
+		<!-- ═════════════════ PROJECTS SECTION ═════════════════ -->
+		<div class="portfolio-eyebrow">Projects &amp; Client Work</div>
+		<h2 class="portfolio-section-title"><span class="grad">Platforms &amp; Sites</span> I Have Built</h2>
+		<p class="portfolio-section-desc">From live commercial platforms and marketplaces to corporate websites across multiple industries.</p>
+
+		<div class="projects-grid">
+
+			<!-- Netwisdom Academy -->
+			<div class="project-card">
+				<div class="project-preview">
+					<img loading="lazy" decoding="async" src="/wp-content/uploads/portfolio/netwisdomacademy.jpg" alt="Netwisdom Academy">
 				</div>
-				<div class="elementor-element elementor-element-fce978b eael-fg-hoverer-content-align-left elementor-widget elementor-widget-eael-filterable-gallery" data-id="fce978b" data-element_type="widget" data-e-type="widget" data-settings="{&quot;photo_gallery&quot;:&quot;yes&quot;,&quot;pagination&quot;:&quot;false&quot;}" data-widget_type="eael-filterable-gallery.default">
-				<div class="elementor-widget-container">
-					<style id="eael-fg-inline-css-fce978b">@media only screen and (max-width: 2399px) {
-					.elementor-element.elementor-element-fce978b .eael-filterable-gallery-item-wrap {
-					        width: 33.333333333333%;
-					    }
-					}@media only screen and (max-width: 1024px) {
-					.elementor-element.elementor-element-fce978b  .eael-filterable-gallery-item-wrap {
-					        width: 33.333333333333%;
-					    }
-					}@media only screen and (max-width: 767px) {
-					.elementor-element.elementor-element-fce978b  .eael-filterable-gallery-item-wrap {
-					        width: 100%;
-					    }
-					}</style>        <div id="eael-filter-gallery-wrapper-fce978b" class="eael-filter-gallery-wrapper" data-layout-mode="hoverer" data-breakpoints="{&quot;mobile&quot;:{&quot;label&quot;:&quot;Mobile Portrait&quot;,&quot;value&quot;:767,&quot;default_value&quot;:767,&quot;direction&quot;:&quot;max&quot;,&quot;is_enabled&quot;:true},&quot;mobile_extra&quot;:{&quot;label&quot;:&quot;Mobile Landscape&quot;,&quot;value&quot;:880,&quot;default_value&quot;:880,&quot;direction&quot;:&quot;max&quot;,&quot;is_enabled&quot;:false},&quot;tablet&quot;:{&quot;label&quot;:&quot;Tablet Portrait&quot;,&quot;value&quot;:1024,&quot;default_value&quot;:1024,&quot;direction&quot;:&quot;max&quot;,&quot;is_enabled&quot;:true},&quot;tablet_extra&quot;:{&quot;label&quot;:&quot;Tablet Landscape&quot;,&quot;value&quot;:1200,&quot;default_value&quot;:1200,&quot;direction&quot;:&quot;max&quot;,&quot;is_enabled&quot;:false},&quot;laptop&quot;:{&quot;label&quot;:&quot;Laptop&quot;,&quot;value&quot;:1366,&quot;default_value&quot;:1366,&quot;direction&quot;:&quot;max&quot;,&quot;is_enabled&quot;:false},&quot;widescreen&quot;:{&quot;label&quot;:&quot;Widescreen&quot;,&quot;value&quot;:2400,&quot;default_value&quot;:2400,&quot;direction&quot;:&quot;min&quot;,&quot;is_enabled&quot;:false}}" data-default_control_key="0" data-custom_default_control="1">
-                    <div class="eael-filter-gallery-container eael-filter-gallery-grid" data-images-per-page="" data-total-gallery-items="6" data-nomore-item-text="" data-is-randomize="no" data-settings="{&quot;grid_style&quot;:&quot;grid&quot;,&quot;popup&quot;:&quot;buttons&quot;,&quot;duration&quot;:500,&quot;gallery_enabled&quot;:&quot;yes&quot;,&quot;video_gallery_yt_privacy&quot;:&quot;&quot;,&quot;control_all_text&quot;:null,&quot;mobile_scroll_to_top&quot;:&quot;&quot;,&quot;mobile_scroll_offset&quot;:0,&quot;post_id&quot;:521,&quot;widget_id&quot;:&quot;fce978b&quot;}" data-search-all="" data-gallery-items="WyI8ZGl2IGNsYXNzPVwiZWFlbC1maWx0ZXJhYmxlLWdhbGxlcnktaXRlbS13cmFwXCI+XG5cdFx0XHRcdDxkaXYgY2xhc3M9XCJlYWVsLWdhbGxlcnktZ3JpZC1pdGVtXCI+PGEgaHJlZj1cImh0dHBzOlwvXC9vZmFzdHNob3AuY29tXCI+PGRpdiBjbGFzcz1cImdhbGxlcnktaXRlbS10aHVtYm5haWwtd3JhcFwiPjxpbWcgd2lkdGg9XCIyODJcIiBoZWlnaHQ9XCIzMDBcIiBzcmM9XCJodHRwczpcL1wvcHViLWYwMjkxNTgwOWQzODQ2YjhhYjBhYWVkZWFiNTRkYmY3LnIyLmRldlwvYm9mYXN0d29ybGRcLzIwMjRcLzA3XC8xNjA5MzcyMlwvT2Zhc3RzaG9wX2FjYWRlbXlfMjAyNC0wNi0yNF8xNC0yMi00Ny0yODJ4MzAwLnBuZ1wiIGNsYXNzPVwiYXR0YWNobWVudC1tZWRpdW0gc2l6ZS1tZWRpdW0gd3AtaW1hZ2UtOTY4XCIgYWx0PVwiXCIgc3Jjc2V0PVwiaHR0cHM6XC9cL3B1Yi1mMDI5MTU4MDlkMzg0NmI4YWIwYWFlZGVhYjU0ZGJmNy5yMi5kZXZcL2JvZmFzdHdvcmxkXC8yMDI0XC8wN1wvMTYwOTM3MjJcL09mYXN0c2hvcF9hY2FkZW15XzIwMjQtMDYtMjRfMTQtMjItNDctMjgyeDMwMC5wbmcgMjgydywgaHR0cHM6XC9cL3B1Yi1mMDI5MTU4MDlkMzg0NmI4YWIwYWFlZGVhYjU0ZGJmNy5yMi5kZXZcL2JvZmFzdHdvcmxkXC8yMDI0XC8wN1wvMTYwOTM3MjJcL09mYXN0c2hvcF9hY2FkZW15XzIwMjQtMDYtMjRfMTQtMjItNDctOTYzeDEwMjQucG5nIDk2M3csIGh0dHBzOlwvXC9wdWItZjAyOTE1ODA5ZDM4NDZiOGFiMGFhZWRlYWI1NGRiZjcucjIuZGV2XC9ib2Zhc3R3b3JsZFwvMjAyNFwvMDdcLzE2MDkzNzIyXC9PZmFzdHNob3BfYWNhZGVteV8yMDI0LTA2LTI0XzE0LTIyLTQ3LTc2OHg4MTcucG5nIDc2OHcsIGh0dHBzOlwvXC9wdWItZjAyOTE1ODA5ZDM4NDZiOGFiMGFhZWRlYWI1NGRiZjcucjIuZGV2XC9ib2Zhc3R3b3JsZFwvMjAyNFwvMDdcLzE2MDkzNzIyXC9PZmFzdHNob3BfYWNhZGVteV8yMDI0LTA2LTI0XzE0LTIyLTQ3LTE0NDV4MTUzNi5wbmcgMTQ0NXcsIGh0dHBzOlwvXC9wdWItZjAyOTE1ODA5ZDM4NDZiOGFiMGFhZWRlYWI1NGRiZjcucjIuZGV2XC9ib2Zhc3R3b3JsZFwvMjAyNFwvMDdcLzE2MDkzNzIyXC9PZmFzdHNob3BfYWNhZGVteV8yMDI0LTA2LTI0XzE0LTIyLTQ3LnBuZyAxOTExd1wiIHNpemVzPVwiKG1heC13aWR0aDogMjgycHgpIDEwMHZ3LCAyODJweFwiIFwvPjxcL2Rpdj48ZGl2IGNsYXNzPVwiZ2FsbGVyeS1pdGVtLWNhcHRpb24td3JhcCBjYXB0aW9uLXN0eWxlLWhvdmVyZXIgZWFlbC1zbGlkZS11cFwiPjxkaXYgY2xhc3M9XCJnYWxsZXJ5LWl0ZW0taG92ZXJlci1iZ1wiPjxcL2Rpdj48ZGl2IGNsYXNzPVwiZ2FsbGVyeS1pdGVtLWNhcHRpb24tb3ZlclwiPjxoMiBjbGFzcz1cImZnLWl0ZW0tdGl0bGVcIj5PZmFzdHNob3AgRGlnaXRhbCA8XC9oMj48ZGl2IGNsYXNzPVwiZmctaXRlbS1jb250ZW50XCI+PHA+XHUwMGEwaXMgYW4gZS1sZWFybmluZyBwbGF0Zm9ybSwgb3IgZWxlY3Ryb25pYyBsZWFybmluZyxcdTAwYTA8XC9wPlxuPFwvZGl2PjxcL2Rpdj48XC9kaXY+PFwvYT48XC9kaXY+PFwvZGl2PiIsIjxkaXYgY2xhc3M9XCJlYWVsLWZpbHRlcmFibGUtZ2FsbGVyeS1pdGVtLXdyYXBcIj5cblx0XHRcdFx0PGRpdiBjbGFzcz1cImVhZWwtZ2FsbGVyeS1ncmlkLWl0ZW1cIj48YSBocmVmPVwiaHR0cHM6XC9cL29mYXN0bW9iaWxlLmNvbVwiPjxkaXYgY2xhc3M9XCJnYWxsZXJ5LWl0ZW0tdGh1bWJuYWlsLXdyYXBcIj48aW1nIHdpZHRoPVwiMjU1XCIgaGVpZ2h0PVwiMzAwXCIgc3JjPVwiaHR0cHM6XC9cL3B1Yi1mMDI5MTU4MDlkMzg0NmI4YWIwYWFlZGVhYjU0ZGJmNy5yMi5kZXZcL2JvZmFzdHdvcmxkXC8yMDI0XC8wN1wvMTYwOTM3MzJcL09GQVNUTU9CSUxFLTI1NXgzMDAucG5nXCIgY2xhc3M9XCJhdHRhY2htZW50LW1lZGl1bSBzaXplLW1lZGl1bSB3cC1pbWFnZS05NzFcIiBhbHQ9XCJcIiBzcmNzZXQ9XCJodHRwczpcL1wvcHViLWYwMjkxNTgwOWQzODQ2YjhhYjBhYWVkZWFiNTRkYmY3LnIyLmRldlwvYm9mYXN0d29ybGRcLzIwMjRcLzA3XC8xNjA5MzczMlwvT0ZBU1RNT0JJTEUtMjU1eDMwMC5wbmcgMjU1dywgaHR0cHM6XC9cL3B1Yi1mMDI5MTU4MDlkMzg0NmI4YWIwYWFlZGVhYjU0ZGJmNy5yMi5kZXZcL2JvZmFzdHdvcmxkXC8yMDI0XC8wN1wvMTYwOTM3MzJcL09GQVNUTU9CSUxFLTg3MHgxMDI0LnBuZyA4NzB3LCBodHRwczpcL1wvcHViLWYwMjkxNTgwOWQzODQ2YjhhYjBhYWVkZWFiNTRkYmY3LnIyLmRldlwvYm9mYXN0d29ybGRcLzIwMjRcLzA3XC8xNjA5MzczMlwvT0ZBU1RNT0JJTEUtNzY4eDkwNC5wbmcgNzY4dywgaHR0cHM6XC9cL3B1Yi1mMDI5MTU4MDlkMzg0NmI4YWIwYWFlZGVhYjU0ZGJmNy5yMi5kZXZcL2JvZmFzdHdvcmxkXC8yMDI0XC8wN1wvMTYwOTM3MzJcL09GQVNUTU9CSUxFLTEzMDV4MTUzNi5wbmcgMTMwNXcsIGh0dHBzOlwvXC9wdWItZjAyOTE1ODA5ZDM4NDZiOGFiMGFhZWRlYWI1NGRiZjcucjIuZGV2XC9ib2Zhc3R3b3JsZFwvMjAyNFwvMDdcLzE2MDkzNzMyXC9PRkFTVE1PQklMRS0xNzQxeDIwNDgucG5nIDE3NDF3LCBodHRwczpcL1wvcHViLWYwMjkxNTgwOWQzODQ2YjhhYjBhYWVkZWFiNTRkYmY3LnIyLmRldlwvYm9mYXN0d29ybGRcLzIwMjRcLzA3XC8xNjA5MzczMlwvT0ZBU1RNT0JJTEUucG5nIDE5MTR3XCIgc2l6ZXM9XCIobWF4LXdpZHRoOiAyNTVweCkgMTAwdncsIDI1NXB4XCIgXC8+PFwvZGl2PjxkaXYgY2xhc3M9XCJnYWxsZXJ5LWl0ZW0tY2FwdGlvbi13cmFwIGNhcHRpb24tc3R5bGUtaG92ZXJlciBlYWVsLXNsaWRlLXVwXCI+PGRpdiBjbGFzcz1cImdhbGxlcnktaXRlbS1ob3ZlcmVyLWJnXCI+PFwvZGl2PjxkaXYgY2xhc3M9XCJnYWxsZXJ5LWl0ZW0tY2FwdGlvbi1vdmVyXCI+PGgyIGNsYXNzPVwiZmctaXRlbS10aXRsZVwiPk9mYXN0bW9iaWxlIFNlcnZpY2VzPFwvaDI+PGRpdiBjbGFzcz1cImZnLWl0ZW0tY29udGVudFwiPjxwPmlzIGEgcGxhdGZvcm0gdGhhdCBvZmZlciBzZXJ2aWNlcyBsaWtlOyBpbnN0YW50IHJlY2hhcmdlIG9mIGFpcnRpbWUsIGRhdGFidW5kbGUsIGNhYmxlIFRWIHN1YnNjcmlwdGlvbnMsIEVsZWN0cmljaXR5IGJpbGwgcGF5bWVudHMgYW5kIG1vcmUuPFwvcD5cbjxcL2Rpdj48XC9kaXY+PFwvZGl2PjxcL2E+PFwvZGl2PjxcL2Rpdj4iLCI8ZGl2IGNsYXNzPVwiZWFlbC1maWx0ZXJhYmxlLWdhbGxlcnktaXRlbS13cmFwXCI+XG5cdFx0XHRcdDxkaXYgY2xhc3M9XCJlYWVsLWdhbGxlcnktZ3JpZC1pdGVtXCI+PGEgaHJlZj1cImh0dHBzOlwvXC9ib2Zhc3R3b3JsZC5uZXRcIj48ZGl2IGNsYXNzPVwiZ2FsbGVyeS1pdGVtLXRodW1ibmFpbC13cmFwXCI+PGltZyB3aWR0aD1cIjIxMFwiIGhlaWdodD1cIjMwMFwiIHNyYz1cImh0dHBzOlwvXC9wdWItZjAyOTE1ODA5ZDM4NDZiOGFiMGFhZWRlYWI1NGRiZjcucjIuZGV2XC9ib2Zhc3R3b3JsZFwvMjAyNFwvMDdcLzE2MDkzNzI3XC9EaWdpdGl6ZS1cdTIwMTMtRGlnaXRhbC1NYXJrZXRpbmctQWdlbmN5LUVsZW1lbnRvci1UZW1wbGF0ZS1LaXQtMjEweDMwMC5wbmdcIiBjbGFzcz1cImF0dGFjaG1lbnQtbWVkaXVtIHNpemUtbWVkaXVtIHdwLWltYWdlLTk2OVwiIGFsdD1cIlwiIHNyY3NldD1cImh0dHBzOlwvXC9wdWItZjAyOTE1ODA5ZDM4NDZiOGFiMGFhZWRlYWI1NGRiZjcucjIuZGV2XC9ib2Zhc3R3b3JsZFwvMjAyNFwvMDdcLzE2MDkzNzI3XC9EaWdpdGl6ZS1cdTIwMTMtRGlnaXRhbC1NYXJrZXRpbmctQWdlbmN5LUVsZW1lbnRvci1UZW1wbGF0ZS1LaXQtMjEweDMwMC5wbmcgMjEwdywgaHR0cHM6XC9cL3B1Yi1mMDI5MTU4MDlkMzg0NmI4YWIwYWFlZGVhYjU0ZGJmNy5yMi5kZXZcL2JvZmFzdHdvcmxkXC8yMDI0XC8wN1wvMTYwOTM3MjdcL0RpZ2l0aXplLVx1MjAxMy1EaWdpdGFsLU1hcmtldGluZy1BZ2VuY3ktRWxlbWVudG9yLVRlbXBsYXRlLUtpdC03MTd4MTAyNC5wbmcgNzE3dywgaHR0cHM6XC9cL3B1Yi1mMDI5MTU4MDlkMzg0NmI4YWIwYWFlZGVhYjU0ZGJmNy5yMi5kZXZcL2JvZmFzdHdvcmxkXC8yMDI0XC8wN1wvMTYwOTM3MjdcL0RpZ2l0aXplLVx1MjAxMy1EaWdpdGFsLU1hcmtldGluZy1BZ2VuY3ktRWxlbWVudG9yLVRlbXBsYXRlLUtpdC03Njh4MTA5Ny5wbmcgNzY4dywgaHR0cHM6XC9cL3B1Yi1mMDI5MTU4MDlkMzg0NmI4YWIwYWFlZGVhYjU0ZGJmNy5yMi5kZXZcL2JvZmFzdHdvcmxkXC8yMDI0XC8wN1wvMTYwOTM3MjdcL0RpZ2l0aXplLVx1MjAxMy1EaWdpdGFsLU1hcmtldGluZy1BZ2VuY3ktRWxlbWVudG9yLVRlbXBsYXRlLUtpdC0xMDc2eDE1MzYucG5nIDEwNzZ3LCBodHRwczpcL1wvcHViLWYwMjkxNTgwOWQzODQ2YjhhYjBhYWVkZWFiNTRkYmY3LnIyLmRldlwvYm9mYXN0d29ybGRcLzIwMjRcLzA3XC8xNjA5MzcyN1wvRGlnaXRpemUtXHUyMDEzLURpZ2l0YWwtTWFya2V0aW5nLUFnZW5jeS1FbGVtZW50b3ItVGVtcGxhdGUtS2l0LTE0MzR4MjA0OC5wbmcgMTQzNHcsIGh0dHBzOlwvXC9wdWItZjAyOTE1ODA5ZDM4NDZiOGFiMGFhZWRlYWI1NGRiZjcucjIuZGV2XC9ib2Zhc3R3b3JsZFwvMjAyNFwvMDdcLzE2MDkzNzI3XC9EaWdpdGl6ZS1cdTIwMTMtRGlnaXRhbC1NYXJrZXRpbmctQWdlbmN5LUVsZW1lbnRvci1UZW1wbGF0ZS1LaXQucG5nIDE5MTR3XCIgc2l6ZXM9XCIobWF4LXdpZHRoOiAyMTBweCkgMTAwdncsIDIxMHB4XCIgXC8+PFwvZGl2PjxkaXYgY2xhc3M9XCJnYWxsZXJ5LWl0ZW0tY2FwdGlvbi13cmFwIGNhcHRpb24tc3R5bGUtaG92ZXJlciBlYWVsLXNsaWRlLXVwXCI+PGRpdiBjbGFzcz1cImdhbGxlcnktaXRlbS1ob3ZlcmVyLWJnXCI+PFwvZGl2PjxkaXYgY2xhc3M9XCJnYWxsZXJ5LWl0ZW0tY2FwdGlvbi1vdmVyXCI+PGgyIGNsYXNzPVwiZmctaXRlbS10aXRsZVwiPkJvZmFzdFdvcmxkIDxcL2gyPjxkaXYgY2xhc3M9XCJmZy1pdGVtLWNvbnRlbnRcIj48cD5cdTAwYTBpcyBOaWdlcmlhJiM4MjE3O3MgbGVhZGluZyBkaWdpdGFsIGFnZW5jeSwgZGVkaWNhdGVkIHRvIGVtcG93ZXJpbmcgYnVzaW5lc3NlcyB3aXRoIGV4cGVydCB3ZWJzaXRlIGRlc2lnbiAmYW1wOyByZWRlc2lnbmluZywgZ3JhcGhpYyBkZXNpZ24sIHdlYiBkZXZlbG9wbWVudCwgZGlnaXRhbCBtYXJrZXRpbmcgc2VydmljZXMgYW5kIG1vcmUuXHUwMGEwPFwvcD5cbjxcL2Rpdj48XC9kaXY+PFwvZGl2PjxcL2E+PFwvZGl2PjxcL2Rpdj4iLCI8ZGl2IGNsYXNzPVwiZWFlbC1maWx0ZXJhYmxlLWdhbGxlcnktaXRlbS13cmFwXCI+XG5cdFx0XHRcdDxkaXYgY2xhc3M9XCJlYWVsLWdhbGxlcnktZ3JpZC1pdGVtXCI+PGEgaHJlZj1cIlwvcHVyZXN0Z29sZGNsZWFuaW5nXCI+PGRpdiBjbGFzcz1cImdhbGxlcnktaXRlbS10aHVtYm5haWwtd3JhcFwiPjxpbWcgd2lkdGg9XCIzMDBcIiBoZWlnaHQ9XCIyODVcIiBzcmM9XCJodHRwczpcL1wvcHViLWYwMjkxNTgwOWQzODQ2YjhhYjBhYWVkZWFiNTRkYmY3LnIyLmRldlwvYm9mYXN0d29ybGRcLzIwMjRcLzA3XC8xNjA5MzcxMFwvUHVyZXN0R29sZC1cdTIwMTMtQmVzdC1DbGVhbmluZy1TZXJ2aXZlLTMtMzAweDI4NS5wbmdcIiBjbGFzcz1cImF0dGFjaG1lbnQtbWVkaXVtIHNpemUtbWVkaXVtIHdwLWltYWdlLTk2NlwiIGFsdD1cIlwiIHNyY3NldD1cImh0dHBzOlwvXC9wdWItZjAyOTE1ODA5ZDM4NDZiOGFiMGFhZWRlYWI1NGRiZjcucjIuZGV2XC9ib2Zhc3R3b3JsZFwvMjAyNFwvMDdcLzE2MDkzNzEwXC9QdXJlc3RHb2xkLVx1MjAxMy1CZXN0LUNsZWFuaW5nLVNlcnZpdmUtMy0zMDB4Mjg1LnBuZyAzMDB3LCBodHRwczpcL1wvcHViLWYwMjkxNTgwOWQzODQ2YjhhYjBhYWVkZWFiNTRkYmY3LnIyLmRldlwvYm9mYXN0d29ybGRcLzIwMjRcLzA3XC8xNjA5MzcxMFwvUHVyZXN0R29sZC1cdTIwMTMtQmVzdC1DbGVhbmluZy1TZXJ2aXZlLTMtMTAyNHg5NzIucG5nIDEwMjR3LCBodHRwczpcL1wvcHViLWYwMjkxNTgwOWQzODQ2YjhhYjBhYWVkZWFiNTRkYmY3LnIyLmRldlwvYm9mYXN0d29ybGRcLzIwMjRcLzA3XC8xNjA5MzcxMFwvUHVyZXN0R29sZC1cdTIwMTMtQmVzdC1DbGVhbmluZy1TZXJ2aXZlLTMtNzY4eDcyOS5wbmcgNzY4dywgaHR0cHM6XC9cL3B1Yi1mMDI5MTU4MDlkMzg0NmI4YWIwYWFlZGVhYjU0ZGJmNy5yMi5kZXZcL2JvZmFzdHdvcmxkXC8yMDI0XC8wN1wvMTYwOTM3MTBcL1B1cmVzdEdvbGQtXHUyMDEzLUJlc3QtQ2xlYW5pbmctU2Vydml2ZS0zLTE1MzZ4MTQ1Ny5wbmcgMTUzNncsIGh0dHBzOlwvXC9wdWItZjAyOTE1ODA5ZDM4NDZiOGFiMGFhZWRlYWI1NGRiZjcucjIuZGV2XC9ib2Zhc3R3b3JsZFwvMjAyNFwvMDdcLzE2MDkzNzEwXC9QdXJlc3RHb2xkLVx1MjAxMy1CZXN0LUNsZWFuaW5nLVNlcnZpdmUtMy5wbmcgMTkxNHdcIiBzaXplcz1cIihtYXgtd2lkdGg6IDMwMHB4KSAxMDB2dywgMzAwcHhcIiBcLz48XC9kaXY+PGRpdiBjbGFzcz1cImdhbGxlcnktaXRlbS1jYXB0aW9uLXdyYXAgY2FwdGlvbi1zdHlsZS1ob3ZlcmVyIGVhZWwtc2xpZGUtdXBcIj48ZGl2IGNsYXNzPVwiZ2FsbGVyeS1pdGVtLWhvdmVyZXItYmdcIj48XC9kaXY+PGRpdiBjbGFzcz1cImdhbGxlcnktaXRlbS1jYXB0aW9uLW92ZXJcIj48aDIgY2xhc3M9XCJmZy1pdGVtLXRpdGxlXCI+UHVyZXN0Z29sZCA8XC9oMj48ZGl2IGNsYXNzPVwiZmctaXRlbS1jb250ZW50XCI+PHA+cHJvdmlkZSB0b3Atbm90Y2ggcmVzaWRlbnRpYWwgYW5kIGNvbW1lcmNpYWwgY2xlYW5pbmcgc29sdXRpb25zLCBlbnN1cmluZyBldmVyeSBzcGFjZSBzaGluZXMgd2l0aCB1bnBhcmFsbGVsZWQgYnJpbGxpYW5jZS5cdTAwYTA8XC9wPlxuPFwvZGl2PjxcL2Rpdj48XC9kaXY+PFwvYT48XC9kaXY+PFwvZGl2PiIsIjxkaXYgY2xhc3M9XCJlYWVsLWZpbHRlcmFibGUtZ2FsbGVyeS1pdGVtLXdyYXBcIj5cblx0XHRcdFx0PGRpdiBjbGFzcz1cImVhZWwtZ2FsbGVyeS1ncmlkLWl0ZW1cIj48YSBocmVmPVwiaHR0cHM6XC9cL29mYXN0c2hvcC5jb21cL3Rlc3RcIj48ZGl2IGNsYXNzPVwiZ2FsbGVyeS1pdGVtLXRodW1ibmFpbC13cmFwXCI+PGltZyB3aWR0aD1cIjMwMFwiIGhlaWdodD1cIjIwOVwiIHNyYz1cImh0dHBzOlwvXC9wdWItZjAyOTE1ODA5ZDM4NDZiOGFiMGFhZWRlYWI1NGRiZjcucjIuZGV2XC9ib2Zhc3R3b3JsZFwvMjAyNFwvMDdcLzE2MDkzNzE2XC9PZmFzdC1TdG9yZS1cdTIwMTMtSG9tZS1vZi1GYXNoaW9uYWJsZS1BY2Nlc3Nvcmllcy0zMDB4MjA5LnBuZ1wiIGNsYXNzPVwiYXR0YWNobWVudC1tZWRpdW0gc2l6ZS1tZWRpdW0gd3AtaW1hZ2UtOTY3XCIgYWx0PVwiXCIgc3Jjc2V0PVwiaHR0cHM6XC9cL3B1Yi1mMDI5MTU4MDlkMzg0NmI4YWIwYWFlZGVhYjU0ZGJmNy5yMi5kZXZcL2JvZmFzdHdvcmxkXC8yMDI0XC8wN1wvMTYwOTM3MTZcL09mYXN0LVN0b3JlLVx1MjAxMy1Ib21lLW9mLUZhc2hpb25hYmxlLUFjY2Vzc29yaWVzLTMwMHgyMDkucG5nIDMwMHcsIGh0dHBzOlwvXC9wdWItZjAyOTE1ODA5ZDM4NDZiOGFiMGFhZWRlYWI1NGRiZjcucjIuZGV2XC9ib2Zhc3R3b3JsZFwvMjAyNFwvMDdcLzE2MDkzNzE2XC9PZmFzdC1TdG9yZS1cdTIwMTMtSG9tZS1vZi1GYXNoaW9uYWJsZS1BY2Nlc3Nvcmllcy0xMDI0eDcxMy5wbmcgMTAyNHcsIGh0dHBzOlwvXC9wdWItZjAyOTE1ODA5ZDM4NDZiOGFiMGFhZWRlYWI1NGRiZjcucjIuZGV2XC9ib2Zhc3R3b3JsZFwvMjAyNFwvMDdcLzE2MDkzNzE2XC9PZmFzdC1TdG9yZS1cdTIwMTMtSG9tZS1vZi1GYXNoaW9uYWJsZS1BY2Nlc3Nvcmllcy03Njh4NTM1LnBuZyA3Njh3LCBodHRwczpcL1wvcHViLWYwMjkxNTgwOWQzODQ2YjhhYjBhYWVkZWFiNTRkYmY3LnIyLmRldlwvYm9mYXN0d29ybGRcLzIwMjRcLzA3XC8xNjA5MzcxNlwvT2Zhc3QtU3RvcmUtXHUyMDEzLUhvbWUtb2YtRmFzaGlvbmFibGUtQWNjZXNzb3JpZXMtMTUzNngxMDY5LnBuZyAxNTM2dywgaHR0cHM6XC9cL3B1Yi1mMDI5MTU4MDlkMzg0NmI4YWIwYWFlZGVhYjU0ZGJmNy5yMi5kZXZcL2JvZmFzdHdvcmxkXC8yMDI0XC8wN1wvMTYwOTM3MTZcL09mYXN0LVN0b3JlLVx1MjAxMy1Ib21lLW9mLUZhc2hpb25hYmxlLUFjY2Vzc29yaWVzLnBuZyAxOTA5d1wiIHNpemVzPVwiKG1heC13aWR0aDogMzAwcHgpIDEwMHZ3LCAzMDBweFwiIFwvPjxcL2Rpdj48ZGl2IGNsYXNzPVwiZ2FsbGVyeS1pdGVtLWNhcHRpb24td3JhcCBjYXB0aW9uLXN0eWxlLWhvdmVyZXIgZWFlbC1zbGlkZS11cFwiPjxkaXYgY2xhc3M9XCJnYWxsZXJ5LWl0ZW0taG92ZXJlci1iZ1wiPjxcL2Rpdj48ZGl2IGNsYXNzPVwiZ2FsbGVyeS1pdGVtLWNhcHRpb24tb3ZlclwiPjxoMiBjbGFzcz1cImZnLWl0ZW0tdGl0bGVcIj5PZmFzdCBTdG9yZTxcL2gyPjxkaXYgY2xhc3M9XCJmZy1pdGVtLWNvbnRlbnRcIj48cD5pcyBhbiBlLWNvbW1lcmNlIHdlYnNpdGUgd2hpY2ggdGVuc2UgdG8gY29ubmVjdCBidXllciBhbmQgc2VsbGVycyB0b2dldGhlciBzZWFtbGVzc2x5LjxcL3A+XG48XC9kaXY+PFwvZGl2PjxcL2Rpdj48XC9hPjxcL2Rpdj48XC9kaXY+IiwiPGRpdiBjbGFzcz1cImVhZWwtZmlsdGVyYWJsZS1nYWxsZXJ5LWl0ZW0td3JhcFwiPlxuXHRcdFx0XHQ8ZGl2IGNsYXNzPVwiZWFlbC1nYWxsZXJ5LWdyaWQtaXRlbVwiPjxhIGhyZWY9XCJcL29sYWJvZGVcIj48ZGl2IGNsYXNzPVwiZ2FsbGVyeS1pdGVtLXRodW1ibmFpbC13cmFwXCI+PGltZyB3aWR0aD1cIjMwMFwiIGhlaWdodD1cIjI3NVwiIHNyYz1cImh0dHBzOlwvXC9wdWItZjAyOTE1ODA5ZDM4NDZiOGFiMGFhZWRlYWI1NGRiZjcucjIuZGV2XC9ib2Zhc3R3b3JsZFwvMjAyNFwvMDdcLzE2MDkzNzM5XC9PbGFib2RlLVx1MjAxMy1NeS1CbG9nLTMwMHgyNzUucG5nXCIgY2xhc3M9XCJhdHRhY2htZW50LW1lZGl1bSBzaXplLW1lZGl1bSB3cC1pbWFnZS05NzZcIiBhbHQ9XCJcIiBzcmNzZXQ9XCJodHRwczpcL1wvcHViLWYwMjkxNTgwOWQzODQ2YjhhYjBhYWVkZWFiNTRkYmY3LnIyLmRldlwvYm9mYXN0d29ybGRcLzIwMjRcLzA3XC8xNjA5MzczOVwvT2xhYm9kZS1cdTIwMTMtTXktQmxvZy0zMDB4Mjc1LnBuZyAzMDB3LCBodHRwczpcL1wvcHViLWYwMjkxNTgwOWQzODQ2YjhhYjBhYWVkZWFiNTRkYmY3LnIyLmRldlwvYm9mYXN0d29ybGRcLzIwMjRcLzA3XC8xNjA5MzczOVwvT2xhYm9kZS1cdTIwMTMtTXktQmxvZy0xMDI0eDkzOS5wbmcgMTAyNHcsIGh0dHBzOlwvXC9wdWItZjAyOTE1ODA5ZDM4NDZiOGFiMGFhZWRlYWI1NGRiZjcucjIuZGV2XC9ib2Zhc3R3b3JsZFwvMjAyNFwvMDdcLzE2MDkzNzM5XC9PbGFib2RlLVx1MjAxMy1NeS1CbG9nLTc2OHg3MDQucG5nIDc2OHcsIGh0dHBzOlwvXC9wdWItZjAyOTE1ODA5ZDM4NDZiOGFiMGFhZWRlYWI1NGRiZjcucjIuZGV2XC9ib2Zhc3R3b3JsZFwvMjAyNFwvMDdcLzE2MDkzNzM5XC9PbGFib2RlLVx1MjAxMy1NeS1CbG9nLTE1MzZ4MTQwOS5wbmcgMTUzNncsIGh0dHBzOlwvXC9wdWItZjAyOTE1ODA5ZDM4NDZiOGFiMGFhZWRlYWI1NGRiZjcucjIuZGV2XC9ib2Zhc3R3b3JsZFwvMjAyNFwvMDdcLzE2MDkzNzM5XC9PbGFib2RlLVx1MjAxMy1NeS1CbG9nLnBuZyAxOTEwd1wiIHNpemVzPVwiKG1heC13aWR0aDogMzAwcHgpIDEwMHZ3LCAzMDBweFwiIFwvPjxcL2Rpdj48ZGl2IGNsYXNzPVwiZ2FsbGVyeS1pdGVtLWNhcHRpb24td3JhcCBjYXB0aW9uLXN0eWxlLWhvdmVyZXIgZWFlbC1zbGlkZS11cFwiPjxkaXYgY2xhc3M9XCJnYWxsZXJ5LWl0ZW0taG92ZXJlci1iZ1wiPjxcL2Rpdj48ZGl2IGNsYXNzPVwiZ2FsbGVyeS1pdGVtLWNhcHRpb24tb3ZlclwiPjxoMiBjbGFzcz1cImZnLWl0ZW0tdGl0bGVcIj5Qb3J0Zm9saW8gV2Vic2l0ZTxcL2gyPjxkaXYgY2xhc3M9XCJmZy1pdGVtLWNvbnRlbnRcIj48cD5pcyBwZXJzb25hbCBwcm9maWxlIG9mIE9sYWJvZGUsIHdoZXJlIGhlIGRpc3BsYXlzIGhpcyBza2lsbHMgYW5kIGNyZWF0aXZpdHkuPFwvcD5cbjxcL2Rpdj48XC9kaXY+PFwvZGl2PjxcL2E+PFwvZGl2PjxcL2Rpdj4iXQ==" data-init-show="9">
-            <div class="eael-filterable-gallery-item-wrap">
-				<div class="eael-gallery-grid-item"><a href="https://ofastshop.com/" target="_blank" rel="noopener noreferrer nofollow"><div class="gallery-item-thumbnail-wrap"><img loading="lazy" decoding="async" width="282" height="300" src="https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093722/Ofastshop_academy_2024-06-24_14-22-47-282x300.png" class="attachment-medium size-medium wp-image-968" alt="" srcset="https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093722/Ofastshop_academy_2024-06-24_14-22-47-282x300.png 282w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093722/Ofastshop_academy_2024-06-24_14-22-47-963x1024.png 963w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093722/Ofastshop_academy_2024-06-24_14-22-47-768x817.png 768w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093722/Ofastshop_academy_2024-06-24_14-22-47-1445x1536.png 1445w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093722/Ofastshop_academy_2024-06-24_14-22-47.png 1911w" sizes="(max-width: 282px) 100vw, 282px"></div><div class="gallery-item-caption-wrap caption-style-hoverer eael-slide-up"><div class="gallery-item-hoverer-bg"></div><div class="gallery-item-caption-over"><h2 class="fg-item-title">Ofastshop Digital </h2><div class="fg-item-content"><p> is an e-learning platform, or electronic learning, </p>
-</div></div></div></a></div></div><div class="eael-filterable-gallery-item-wrap">
-				<div class="eael-gallery-grid-item"><a href="https://ofastmobile.com/" target="_blank" rel="noopener noreferrer nofollow"><div class="gallery-item-thumbnail-wrap"><img loading="lazy" decoding="async" width="255" height="300" src="https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093732/OFASTMOBILE-255x300.png" class="attachment-medium size-medium wp-image-971" alt="" srcset="https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093732/OFASTMOBILE-255x300.png 255w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093732/OFASTMOBILE-870x1024.png 870w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093732/OFASTMOBILE-768x904.png 768w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093732/OFASTMOBILE-1305x1536.png 1305w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093732/OFASTMOBILE-1741x2048.png 1741w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093732/OFASTMOBILE.png 1914w" sizes="(max-width: 255px) 100vw, 255px"></div><div class="gallery-item-caption-wrap caption-style-hoverer eael-slide-up"><div class="gallery-item-hoverer-bg"></div><div class="gallery-item-caption-over"><h2 class="fg-item-title">Ofastmobile Services</h2><div class="fg-item-content"><p>is a platform that offer services like; instant recharge of airtime, databundle, cable TV subscriptions, Electricity bill payments and more.</p>
-</div></div></div></a></div></div><div class="eael-filterable-gallery-item-wrap">
-				<div class="eael-gallery-grid-item"><a href="/"><div class="gallery-item-thumbnail-wrap"><img loading="lazy" decoding="async" width="210" height="300" src="https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093727/Digitize-%E2%80%93-Digital-Marketing-Agency-Elementor-Template-Kit-210x300.png" class="attachment-medium size-medium wp-image-969" alt="" srcset="https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093727/Digitize-–-Digital-Marketing-Agency-Elementor-Template-Kit-210x300.png 210w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093727/Digitize-–-Digital-Marketing-Agency-Elementor-Template-Kit-717x1024.png 717w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093727/Digitize-–-Digital-Marketing-Agency-Elementor-Template-Kit-768x1097.png 768w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093727/Digitize-–-Digital-Marketing-Agency-Elementor-Template-Kit-1076x1536.png 1076w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093727/Digitize-–-Digital-Marketing-Agency-Elementor-Template-Kit-1434x2048.png 1434w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093727/Digitize-–-Digital-Marketing-Agency-Elementor-Template-Kit.png 1914w" sizes="(max-width: 210px) 100vw, 210px"></div><div class="gallery-item-caption-wrap caption-style-hoverer eael-slide-up"><div class="gallery-item-hoverer-bg"></div><div class="gallery-item-caption-over"><h2 class="fg-item-title">BofastWorld </h2><div class="fg-item-content"><p> is Nigeria’s leading digital agency, dedicated to empowering businesses with expert website design &amp; redesigning, graphic design, web development, digital marketing services and more. </p>
-</div></div></div></a></div></div><div class="eael-filterable-gallery-item-wrap">
-				<div class="eael-gallery-grid-item"><a href="/purestgoldcleaning"><div class="gallery-item-thumbnail-wrap"><img loading="lazy" decoding="async" width="300" height="285" src="https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093710/PurestGold-%E2%80%93-Best-Cleaning-Servive-3-300x285.png" class="attachment-medium size-medium wp-image-966" alt="" srcset="https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093710/PurestGold-–-Best-Cleaning-Servive-3-300x285.png 300w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093710/PurestGold-–-Best-Cleaning-Servive-3-1024x972.png 1024w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093710/PurestGold-–-Best-Cleaning-Servive-3-768x729.png 768w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093710/PurestGold-–-Best-Cleaning-Servive-3-1536x1457.png 1536w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093710/PurestGold-–-Best-Cleaning-Servive-3.png 1914w" sizes="(max-width: 300px) 100vw, 300px"></div><div class="gallery-item-caption-wrap caption-style-hoverer eael-slide-up"><div class="gallery-item-hoverer-bg"></div><div class="gallery-item-caption-over"><h2 class="fg-item-title">Purestgold </h2><div class="fg-item-content"><p>provide top-notch residential and commercial cleaning solutions, ensuring every space shines with unparalleled brilliance. </p>
-</div></div></div></a></div></div><div class="eael-filterable-gallery-item-wrap">
-				<div class="eael-gallery-grid-item"><a href="https://ofastshop.com/test" target="_blank" rel="noopener noreferrer nofollow"><div class="gallery-item-thumbnail-wrap"><img loading="lazy" decoding="async" width="300" height="209" src="https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093716/Ofast-Store-%E2%80%93-Home-of-Fashionable-Accessories-300x209.png" class="attachment-medium size-medium wp-image-967" alt="" srcset="https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093716/Ofast-Store-–-Home-of-Fashionable-Accessories-300x209.png 300w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093716/Ofast-Store-–-Home-of-Fashionable-Accessories-1024x713.png 1024w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093716/Ofast-Store-–-Home-of-Fashionable-Accessories-768x535.png 768w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093716/Ofast-Store-–-Home-of-Fashionable-Accessories-1536x1069.png 1536w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093716/Ofast-Store-–-Home-of-Fashionable-Accessories.png 1909w" sizes="(max-width: 300px) 100vw, 300px"></div><div class="gallery-item-caption-wrap caption-style-hoverer eael-slide-up"><div class="gallery-item-hoverer-bg"></div><div class="gallery-item-caption-over"><h2 class="fg-item-title">Ofast Store</h2><div class="fg-item-content"><p>is an e-commerce website which tense to connect buyer and sellers together seamlessly.</p>
-</div></div></div></a></div></div><div class="eael-filterable-gallery-item-wrap">
-				<div class="eael-gallery-grid-item"><a href="/olabode"><div class="gallery-item-thumbnail-wrap"><img loading="lazy" decoding="async" width="300" height="275" src="https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093739/Olabode-%E2%80%93-My-Blog-300x275.png" class="attachment-medium size-medium wp-image-976" alt="" srcset="https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093739/Olabode-–-My-Blog-300x275.png 300w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093739/Olabode-–-My-Blog-1024x939.png 1024w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093739/Olabode-–-My-Blog-768x704.png 768w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093739/Olabode-–-My-Blog-1536x1409.png 1536w, https://pub-f02915809d3846b8ab0aaedeab54dbf7.r2.dev/bofastworld/2024/07/16093739/Olabode-–-My-Blog.png 1910w" sizes="(max-width: 300px) 100vw, 300px"></div><div class="gallery-item-caption-wrap caption-style-hoverer eael-slide-up"><div class="gallery-item-hoverer-bg"></div><div class="gallery-item-caption-over"><h2 class="fg-item-title">Portfolio Website</h2><div class="fg-item-content"><p>is personal profile of Olabode, where he displays his skills and creativity.</p>
-</div></div></div></a></div></div>        </div>
-                </div>
-        
-        				</div>
-				</div>
-				</div>
+				<div class="project-body">
+					<div class="project-type">Consulting &amp; Education</div>
+					<div class="project-name">Netwisdom Academy</div>
+					<p class="project-desc">Professional ghostwriting, strategic content development, cybersecurity, and bold brand building platform for Nigerian businesses and entrepreneurs ready to scale authority and income.</p>
+					<div class="project-footer">
+						<div class="project-stack">
+							<span>WordPress</span><span>HTML/CSS/JS</span>
+						</div>
+						<a href="https://netwisdomacademy.ng/" target="_blank" rel="noopener noreferrer nofollow" class="project-url">
+							Visit &#8599;
+						</a>
 					</div>
 				</div>
+			</div>
+
+			<!-- Personal Portfolio (Reginald Appiah) -->
+			<div class="project-card">
+				<div class="project-preview">
+					<img loading="lazy" decoding="async" src="/wp-content/uploads/portfolio/reginald-portfolio.jpg" alt="Reginald Appiah Portfolio">
+				</div>
+				<div class="project-body">
+					<div class="project-type">Personal Portfolio</div>
+					<div class="project-name">Reginald Appiah</div>
+					<p class="project-desc">An elegant, high-converting personal portfolio showcasing copywriting, positioning, and marketing services. Built for maximum speed and hosted on Cloudflare Pages.</p>
+					<div class="project-footer">
+						<div class="project-stack">
+							<span>HTML/CSS/JS</span><span>Cloudflare Pages</span>
+						</div>
+						<a href="https://reginald.ofastshop.com/" target="_blank" rel="noopener noreferrer nofollow" class="project-url">
+							Visit &#8599;
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Subway Energy Limited -->
+			<div class="project-card">
+				<div class="project-preview">
+					<img loading="lazy" decoding="async" src="/wp-content/uploads/portfolio/subwaylimited.jpg" alt="Subway Energy Limited">
+				</div>
+				<div class="project-body">
+					<div class="project-type">Solar Engineering &amp; Energy</div>
+					<div class="project-name">Subway Energy Limited</div>
+					<p class="project-desc">100% reliable renewable energy and solar engineering solutions helping businesses, industries, institutions, and communities achieve sustainable power.</p>
+					<div class="project-footer">
+						<div class="project-stack">
+							<span>WordPress</span><span>HTML/CSS/JS</span>
+						</div>
+						<a href="https://subwaylimited.com/" target="_blank" rel="noopener noreferrer nofollow" class="project-url">
+							Visit &#8599;
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Subway Limited Shop -->
+			<div class="project-card">
+				<div class="project-preview">
+					<img loading="lazy" decoding="async" src="/wp-content/uploads/portfolio/shop-subwaylimited.jpg" alt="Subway Energy Shop">
+				</div>
+				<div class="project-body">
+					<div class="project-type">Commercial Solar E-Commerce</div>
+					<div class="project-name">Subway Energy Shop</div>
+					<p class="project-desc">High-yield commercial solar arrays, Tier-1 inverters, battery storage, and solar hardware e-commerce store with category filtering and instant checkout.</p>
+					<div class="project-footer">
+						<div class="project-stack">
+							<span>WordPress</span><span>PHP</span><span>WooCommerce</span>
+						</div>
+						<a href="https://shop.subwaylimited.com/" target="_blank" rel="noopener noreferrer nofollow" class="project-url">
+							Visit &#8599;
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- MyPropertyHQ -->
+			<div class="project-card">
+				<div class="project-preview">
+					<img loading="lazy" decoding="async" src="/wp-content/uploads/portfolio/mypropertyhq.jpg" alt="MyPropertyHQ">
+				</div>
+				<div class="project-body">
+					<div class="project-type">Real Estate Platform</div>
+					<div class="project-name">MyPropertyHQ</div>
+					<p class="project-desc">Search verified properties, vetted duplexes, serviced apartments, and commercial plots in Nigeria with verified titles and direct broker connections.</p>
+					<div class="project-footer">
+						<div class="project-stack">
+							<span>HTML/CSS/JS</span><span>Real Estate Portal</span>
+						</div>
+						<a href="https://mypropertyhq.ng/" target="_blank" rel="noopener noreferrer nofollow" class="project-url">
+							Visit &#8599;
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Ofastshop Digitals -->
+			<div class="project-card">
+				<div class="project-preview">
+					<img loading="lazy" decoding="async" src="/wp-content/uploads/portfolio/Ofastshop-Digitals-Ofastshop-Digitals-06-29-2026_02_42_PM.png" alt="Ofastshop Digitals">
+				</div>
+				<div class="project-body">
+					<div class="project-type">Digital Marketplace</div>
+					<div class="project-name">Ofastshop Digitals</div>
+					<p class="project-desc">A full digital learning and product marketplace built and operated on WordPress. Instructors sell courses, digital products, and earn through an integrated affiliate system.</p>
+					<div class="project-footer">
+						<div class="project-stack">
+							<span>WordPress</span><span>WooCommerce</span><span>PHP</span>
+						</div>
+						<a href="https://ofastshop.com" target="_blank" rel="noopener noreferrer nofollow" class="project-url">
+							Visit &#8599;
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- XTY Properties -->
+			<div class="project-card">
+				<div class="project-preview">
+					<img loading="lazy" decoding="async" src="/wp-content/uploads/portfolio/Xty-properties-–-1-Most-Reliable-Real-Estate-Agency-in-Abuja-09-25-2025_01_52_PM.png" alt="XTY Properties">
+				</div>
+				<div class="project-body">
+					<div class="project-type">Real Estate &#8212; Client Site</div>
+					<div class="project-name">XTY Properties</div>
+					<p class="project-desc">A professional real estate website for an Abuja-based property company. Built on WordPress with custom property listings, contact workflows, and responsive lead generation design.</p>
+					<div class="project-footer">
+						<div class="project-stack">
+							<span>WordPress</span><span>PHP</span><span>ACF</span><span>CSS</span>
+						</div>
+						<a href="https://xtyproperties.com" target="_blank" rel="noopener noreferrer nofollow" class="project-url">
+							Visit &#8599;
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Ofast Mobile -->
+			<div class="project-card">
+				<div class="project-preview">
+					<img loading="lazy" decoding="async" src="/wp-content/uploads/portfolio/ofastmobile.png" alt="Ofast Mobile">
+				</div>
+				<div class="project-body">
+					<div class="project-type">Static Mobile App</div>
+					<div class="project-name">Ofast Mobile</div>
+					<p class="project-desc">A fast, fully static mobile web experience built using core web technologies (HTML, CSS, JS) and deployed securely on Cloudflare for lightning-fast delivery.</p>
+					<div class="project-footer">
+						<div class="project-stack">
+							<span>HTML/CSS/JS</span><span>Cloudflare</span>
+						</div>
+						<a href="https://web.bofastworld.workers.dev" target="_blank" rel="noopener noreferrer nofollow" class="project-url">
+							Visit &#8599;
+						</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- ═════════════════ PLUGINS SECTION ═════════════════ -->
+		<div class="portfolio-eyebrow">Custom WordPress Plugins</div>
+		<h2 class="portfolio-section-title"><span class="grad">Built From Scratch.</span> In Production.</h2>
+		<p class="portfolio-section-desc">Every plugin below was written in PHP using WordPress core APIs, hooks, and filters. No plugin frameworks, no code generators.</p>
+
+		<div class="plugins-grid">
+
+			<!-- Ofast Toolkit -->
+			<div class="plugin-card">
+				<div class="plugin-icon">
+					<svg width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+						<path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+					</svg>
+				</div>
+				<div class="plugin-name">Ofast Toolkit</div>
+				<div class="plugin-subtitle">Modular Admin Plugin</div>
+				<p class="plugin-desc">12 independent modules for WordPress site management: SMTP email delivery, bulk email with CRM and campaign queue, SMS, Cloudflare Turnstile spam protection, login redesign (glassmorphism), redirects manager, code snippets, social login, white label, and more. Ships with a custom phone-home licensing system.</p>
+				<div class="plugin-tags">
+					<span class="plugin-tag">PHP</span>
+					<span class="plugin-tag">WordPress APIs</span>
+					<span class="plugin-tag">Custom Licensing</span>
+					<span class="plugin-tag">CRM</span>
+					<span class="plugin-tag">Cloudflare Turnstile</span>
+				</div>
+				<a href="https://toolkit.ofastshop.com" target="_blank" rel="noopener noreferrer nofollow" class="plugin-link">
+					Download Free
+					<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+						<path d="M5 12h14M12 5l7 7-7 7"></path>
+					</svg>
+				</a>
+			</div>
+
+			<!-- ODM -->
+			<div class="plugin-card">
+				<div class="plugin-icon">
+					<svg width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+					</svg>
+				</div>
+				<div class="plugin-name">ODM</div>
+				<div class="plugin-subtitle">Ofast Digital Marketplace</div>
+				<p class="plugin-desc">Extends WooCommerce and Tutor LMS to support digital product sales on learning platforms. Intercepts WooCommerce payment hooks at priority level to calculate and deduct affiliate commissions before Tutor LMS processes instructor earnings. Ensures accurate splits across every transaction.</p>
+				<div class="plugin-tags">
+					<span class="plugin-tag">PHP</span>
+					<span class="plugin-tag">WooCommerce Hooks</span>
+					<span class="plugin-tag">Tutor LMS</span>
+					<span class="plugin-tag">SliceWP</span>
+				</div>
+				<a href="https://ofastshop.com" target="_blank" rel="noopener noreferrer nofollow" class="plugin-link">
+					See It Live
+					<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+						<path d="M5 12h14M12 5l7 7-7 7"></path>
+					</svg>
+				</a>
+			</div>
+
+			<!-- TutorSplit -->
+			<div class="plugin-card">
+				<div class="plugin-icon">
+					<svg width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+					</svg>
+				</div>
+				<div class="plugin-name">TutorSplit</div>
+				<div class="plugin-subtitle">Affiliate Commission Splitter</div>
+				<p class="plugin-desc">Standalone plugin for WordPress sites using Tutor LMS that need affiliate commission management without a full digital marketplace. Accurately handles commission splitting between instructors and affiliates at the payment hook level.</p>
+				<div class="plugin-tags">
+					<span class="plugin-tag">PHP</span>
+					<span class="plugin-tag">Tutor LMS</span>
+					<span class="plugin-tag">Affiliate Management</span>
+					<span class="plugin-tag">WooCommerce</span>
+				</div>
+			</div>
+
+			<!-- Ofast Certificate -->
+			<div class="plugin-card">
+				<div class="plugin-icon">
+					<svg width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+					</svg>
+				</div>
+				<div class="plugin-name">Ofast Certificate</div>
+				<div class="plugin-subtitle">Digital Credential System</div>
+				<p class="plugin-desc">Automated certificate issuance plugin tied to verified course completion on Tutor LMS. Generates professional digital credentials for learners that are linked to real platform activity, not just self-reported completion.</p>
+				<div class="plugin-tags">
+					<span class="plugin-tag">PHP</span>
+					<span class="plugin-tag">Tutor LMS</span>
+					<span class="plugin-tag">Certificates</span>
+					<span class="plugin-tag">Automation</span>
+				</div>
+			</div>
+
+			<!-- OFast Pipeline (WIP) -->
+			<div class="plugin-card wip">
+				<div class="wip-badge">In Progress</div>
+				<div class="plugin-icon gold-icon">
+					<svg width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+					</svg>
+				</div>
+				<div class="plugin-name">OFast Pipeline</div>
+				<div class="plugin-subtitle">Lead Generation &amp; CRM Automation</div>
+				<p class="plugin-desc">A done-for-you lead generation and pipeline automation plugin for WordPress, targeting SMBs. Captures leads, manages follow-up workflows, and automates the sales pipeline from first contact to conversion &#8212; all inside WordPress.</p>
+				<div class="plugin-tags">
+					<span class="plugin-tag">PHP</span>
+					<span class="plugin-tag">WordPress Plugin</span>
+					<span class="plugin-tag">CRM</span>
+					<span class="plugin-tag">Lead Generation</span>
+					<span class="plugin-tag">Automation</span>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
 		<div class="elementor-element elementor-element-5d75856f e-flex e-con-boxed e-con e-parent" data-id="5d75856f" data-element_type="container" data-e-type="container">
 					<div class="e-con-inner">
 		<div class="elementor-element elementor-element-71eee013 e-flex e-con-boxed e-con e-child" data-id="71eee013" data-element_type="container" data-e-type="container">
