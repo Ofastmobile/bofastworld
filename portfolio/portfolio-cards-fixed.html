@@ -1,0 +1,106 @@
+<!-- Portfolio cards: paste into ONE Elementor HTML widget (replaces the old Gemini block) -->
+<style>
+.portfolio-cards-fixed{display:block;width:100%;max-width:1140px;margin:0 auto;padding:50px 15px 60px;box-sizing:border-box;font-family:'Ubuntu','DM Sans',sans-serif}
+.portfolio-cards-fixed *{box-sizing:border-box}
+.portfolio-cards-fixed .pf-head{margin:0 0 32px}
+.portfolio-cards-fixed .pf-eyebrow{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#087c60;margin:0 0 10px}
+.portfolio-cards-fixed .pf-eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:#20D9A1}
+.portfolio-cards-fixed h2.pf-title{font-family:'Ubuntu',sans-serif;font-size:42px;font-weight:700;line-height:1.2;color:#0f172a;margin:0 0 10px}
+.portfolio-cards-fixed h2.pf-title span{background:linear-gradient(90deg,#5F39FF,#20D9A1);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.portfolio-cards-fixed p.pf-sub{font-size:16px;line-height:1.6;color:#475569;max-width:650px;margin:0}
+.portfolio-cards-fixed .pf-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;width:100%;margin:0 0 80px}
+.portfolio-cards-fixed .pf-grid:last-child{margin-bottom:0}
+.portfolio-cards-fixed .pf-card{display:flex;flex-direction:column;min-width:0;background:#fff;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;position:relative;transition:border-color .3s,transform .3s,box-shadow .3s}
+.portfolio-cards-fixed .pf-card:hover{border-color:rgba(95,57,255,.55);transform:translateY(-5px);box-shadow:0 14px 34px -10px rgba(15,23,42,.2)}
+.portfolio-cards-fixed .pf-preview{height:200px;background:linear-gradient(135deg,#EEEDFE,#d9f8ee);border-bottom:1px solid #e2e8f0;overflow:hidden}
+.portfolio-cards-fixed .pf-preview img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .4s}
+.portfolio-cards-fixed .pf-card:hover .pf-preview img{transform:scale(1.05)}
+.portfolio-cards-fixed .pf-body{display:flex;flex-direction:column;flex:1;padding:24px}
+.portfolio-cards-fixed .pf-plugin{padding:28px}
+.portfolio-cards-fixed .pf-plugin::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#5F39FF,#20D9A1);opacity:0;transition:opacity .3s}
+.portfolio-cards-fixed .pf-plugin:hover::before{opacity:1}
+.portfolio-cards-fixed .pf-icon{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#5F39FF,#20D9A1);display:flex;align-items:center;justify-content:center;margin:0 0 20px;flex-shrink:0}
+.portfolio-cards-fixed .pf-type{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#087c60;margin:0 0 8px}
+.portfolio-cards-fixed h3.pf-name{font-family:'Ubuntu',sans-serif;font-size:20px;font-weight:700;line-height:1.3;letter-spacing:0;color:#0f172a;margin:0 0 10px}
+.portfolio-cards-fixed .pf-plugin h3.pf-name{margin-bottom:6px}
+.portfolio-cards-fixed p.pf-desc{font-size:14px;line-height:1.65;color:#475569;margin:0 0 20px;flex-grow:1}
+.portfolio-cards-fixed .pf-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;border-top:1px solid #e2e8f0}
+.portfolio-cards-fixed .pf-stack{display:flex;flex-wrap:wrap;gap:6px}
+.portfolio-cards-fixed .pf-tags{margin:0 0 20px}
+.portfolio-cards-fixed .pf-stack span{font-size:11px;line-height:1.4;color:#475569;background:#f1f5f9;border:1px solid #e2e8f0;padding:3px 10px;border-radius:100px}
+.portfolio-cards-fixed a.pf-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#087c60;text-decoration:none;white-space:nowrap;transition:color .2s,transform .2s}
+.portfolio-cards-fixed a.pf-link svg{width:12px;height:12px;flex-shrink:0}
+.portfolio-cards-fixed a.pf-link:hover{color:#5F39FF;transform:translateX(3px)}
+.portfolio-cards-fixed a.pf-plink{margin-top:auto}
+@media(max-width:1024px){.portfolio-cards-fixed .pf-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:767px){.portfolio-cards-fixed{padding:40px 10px}.portfolio-cards-fixed .pf-grid{grid-template-columns:minmax(0,1fr);margin-bottom:60px}.portfolio-cards-fixed h2.pf-title{font-size:30px}}
+@media(prefers-reduced-motion:reduce){.portfolio-cards-fixed *{transition:none!important}}
+</style>
+<section class="portfolio-cards-fixed">
+<div class="pf-head"><div class="pf-eyebrow">Projects &amp; Client Work</div>
+<h2 class="pf-title"><span>Platforms &amp; Sites</span> I Have Built</h2>
+<p class="pf-sub">From live commercial platforms and marketplaces to corporate websites across multiple industries.</p></div>
+<div class="pf-grid">
+<article class="pf-card">
+<div class="pf-preview"><img loading="lazy" decoding="async" src="/wp-content/uploads/portfolio/netwisdomacademy.jpg" alt="Netwisdom Academy" onerror="this.style.display='none'"></div>
+<div class="pf-body"><div class="pf-type">Consulting &amp; Education</div><h3 class="pf-name">Netwisdom Academy</h3><p class="pf-desc">Professional ghostwriting, strategic content development, cybersecurity, and bold brand building platform for Nigerian businesses and entrepreneurs ready to scale authority and income.</p>
+<div class="pf-foot"><div class="pf-stack"><span>WordPress</span><span>HTML/CSS/JS</span></div><a class="pf-link" href="https://netwisdomacademy.ng/" target="_blank" rel="noopener noreferrer nofollow">Visit <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M7 7h10v10"/></svg></a></div></div></article>
+<article class="pf-card">
+<div class="pf-preview"><img loading="lazy" decoding="async" src="/wp-content/uploads/portfolio/reginald-portfolio.jpg" alt="Reginald Appiah Portfolio" onerror="this.style.display='none'"></div>
+<div class="pf-body"><div class="pf-type">Personal Portfolio</div><h3 class="pf-name">Reginald Appiah</h3><p class="pf-desc">An elegant, high-converting personal portfolio showcasing copywriting, positioning, and marketing services. Built for maximum speed and hosted on Cloudflare Pages.</p>
+<div class="pf-foot"><div class="pf-stack"><span>HTML/CSS/JS</span><span>Cloudflare Pages</span></div><a class="pf-link" href="https://reginald.ofastshop.com/" target="_blank" rel="noopener noreferrer nofollow">Visit <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M7 7h10v10"/></svg></a></div></div></article>
+<article class="pf-card">
+<div class="pf-preview"><img loading="lazy" decoding="async" src="/wp-content/uploads/portfolio/subwaylimited.jpg" alt="Subway Energy Limited" onerror="this.style.display='none'"></div>
+<div class="pf-body"><div class="pf-type">Solar Engineering &amp; Energy</div><h3 class="pf-name">Subway Energy Limited</h3><p class="pf-desc">100% reliable renewable energy and solar engineering solutions helping businesses, industries, institutions, and communities achieve sustainable power.</p>
+<div class="pf-foot"><div class="pf-stack"><span>WordPress</span><span>HTML/CSS/JS</span></div><a class="pf-link" href="https://subwaylimited.com/" target="_blank" rel="noopener noreferrer nofollow">Visit <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M7 7h10v10"/></svg></a></div></div></article>
+<article class="pf-card">
+<div class="pf-preview"><img loading="lazy" decoding="async" src="/wp-content/uploads/portfolio/shop-subwaylimited.jpg" alt="Subway Energy Shop" onerror="this.style.display='none'"></div>
+<div class="pf-body"><div class="pf-type">Commercial Solar E-Commerce</div><h3 class="pf-name">Subway Energy Shop</h3><p class="pf-desc">High-yield commercial solar arrays, Tier-1 inverters, battery storage, and solar hardware e-commerce store with category filtering and instant checkout.</p>
+<div class="pf-foot"><div class="pf-stack"><span>WordPress</span><span>PHP</span><span>WooCommerce</span></div><a class="pf-link" href="https://shop.subwaylimited.com/" target="_blank" rel="noopener noreferrer nofollow">Visit <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M7 7h10v10"/></svg></a></div></div></article>
+<article class="pf-card">
+<div class="pf-preview"><img loading="lazy" decoding="async" src="/wp-content/uploads/portfolio/mypropertyhq.jpg" alt="MyPropertyHQ" onerror="this.style.display='none'"></div>
+<div class="pf-body"><div class="pf-type">Real Estate Platform</div><h3 class="pf-name">MyPropertyHQ</h3><p class="pf-desc">Search verified properties, vetted duplexes, serviced apartments, and commercial plots in Nigeria with verified titles and direct broker connections.</p>
+<div class="pf-foot"><div class="pf-stack"><span>PHP</span><span>GSAP</span><span>HTML/CSS/JS</span><span>Real Estate</span></div><a class="pf-link" href="https://mypropertyhq.ng/" target="_blank" rel="noopener noreferrer nofollow">Visit <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M7 7h10v10"/></svg></a></div></div></article>
+<article class="pf-card">
+<div class="pf-preview"><img loading="lazy" decoding="async" src="/wp-content/uploads/portfolio/Ofastshop-Digitals-Ofastshop-Digitals-06-29-2026_02_42_PM.png" alt="Ofastshop Digitals" onerror="this.style.display='none'"></div>
+<div class="pf-body"><div class="pf-type">Digital Marketplace</div><h3 class="pf-name">Ofastshop Digitals</h3><p class="pf-desc">A full digital learning and product marketplace built and operated on WordPress. Instructors sell courses, digital products, and earn through an integrated affiliate system.</p>
+<div class="pf-foot"><div class="pf-stack"><span>WordPress</span><span>WooCommerce</span><span>PHP</span></div><a class="pf-link" href="https://ofastshop.com" target="_blank" rel="noopener noreferrer nofollow">Visit <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M7 7h10v10"/></svg></a></div></div></article>
+<article class="pf-card">
+<div class="pf-preview"><img loading="lazy" decoding="async" src="/wp-content/uploads/portfolio/Xty-properties-%E2%80%93-1-Most-Reliable-Real-Estate-Agency-in-Abuja-09-25-2025_01_52_PM.png" alt="XTY Properties" onerror="this.style.display='none'"></div>
+<div class="pf-body"><div class="pf-type">Real Estate &#8212; Client Site</div><h3 class="pf-name">XTY Properties</h3><p class="pf-desc">A professional real estate website for an Abuja-based property company. Built on WordPress with custom property listings, contact workflows, and responsive lead generation design.</p>
+<div class="pf-foot"><div class="pf-stack"><span>WordPress</span><span>PHP</span><span>ACF</span><span>CSS</span></div><a class="pf-link" href="https://xtyproperties.com" target="_blank" rel="noopener noreferrer nofollow">Visit <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M7 7h10v10"/></svg></a></div></div></article>
+<article class="pf-card">
+<div class="pf-preview"><img loading="lazy" decoding="async" src="/wp-content/uploads/portfolio/ofastmobile.png" alt="Ofast Mobile" onerror="this.style.display='none'"></div>
+<div class="pf-body"><div class="pf-type">Static Mobile App</div><h3 class="pf-name">Ofast Mobile</h3><p class="pf-desc">A fast, fully static mobile web experience built using core web technologies (HTML, CSS, JS) and deployed securely on Cloudflare for lightning-fast delivery.</p>
+<div class="pf-foot"><div class="pf-stack"><span>HTML/CSS/JS</span><span>Cloudflare</span></div><a class="pf-link" href="https://web.bofastworld.workers.dev" target="_blank" rel="noopener noreferrer nofollow">Visit <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M7 7h10v10"/></svg></a></div></div></article>
+</div>
+<div class="pf-head"><div class="pf-eyebrow">Custom WordPress Plugins</div>
+<h2 class="pf-title"><span>Built From Scratch.</span> In Production.</h2>
+<p class="pf-sub">Every plugin below was written in PHP using WordPress core APIs, hooks, and filters. No plugin frameworks, no code generators.</p></div>
+<div class="pf-grid">
+<article class="pf-card pf-plugin">
+<div class="pf-icon"><svg width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065zM15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+<h3 class="pf-name">Ofast Toolkit</h3><div class="pf-type">Modular Admin Plugin</div><p class="pf-desc">12 independent modules for WordPress site management: SMTP email delivery, bulk email with CRM and campaign queue, SMS, Cloudflare Turnstile spam protection, login redesign (glassmorphism), redirects manager, code snippets, social login, white label, and more. Ships with a custom phone-home licensing system.</p>
+<div class="pf-stack pf-tags"><span>PHP</span><span>WordPress APIs</span><span>Custom Licensing</span><span>CRM</span><span>Cloudflare Turnstile</span></div><a class="pf-link pf-plink" href="https://toolkit.ofastshop.com" target="_blank" rel="noopener noreferrer nofollow">Download Free <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></article>
+<article class="pf-card pf-plugin">
+<div class="pf-icon"><svg width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></div>
+<h3 class="pf-name">ODM</h3><div class="pf-type">Ofast Digital Marketplace</div><p class="pf-desc">Extends WooCommerce and Tutor LMS to support digital product sales on learning platforms. Intercepts WooCommerce payment hooks at priority level to calculate and deduct affiliate commissions before Tutor LMS processes instructor earnings. Ensures accurate splits across every transaction.</p>
+<div class="pf-stack pf-tags"><span>PHP</span><span>WooCommerce Hooks</span><span>Tutor LMS</span><span>SliceWP</span></div><a class="pf-link pf-plink" href="https://ofastshop.com" target="_blank" rel="noopener noreferrer nofollow">See It Live <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></article>
+<article class="pf-card pf-plugin">
+<div class="pf-icon"><svg width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
+<h3 class="pf-name">TutorSplit</h3><div class="pf-type">Affiliate Commission Splitter</div><p class="pf-desc">Standalone plugin for WordPress sites using Tutor LMS that need affiliate commission management without a full digital marketplace. Accurately handles commission splitting between instructors and affiliates at the payment hook level.</p>
+<div class="pf-stack pf-tags"><span>PHP</span><span>Tutor LMS</span><span>Affiliate Management</span><span>WooCommerce</span></div></article>
+<article class="pf-card pf-plugin">
+<div class="pf-icon"><svg width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></div>
+<h3 class="pf-name">Ofast Certificate</h3><div class="pf-type">Digital Credential System</div><p class="pf-desc">Automated certificate issuance plugin tied to verified course completion on Tutor LMS. Generates professional digital credentials for learners that are linked to real platform activity, not just self-reported completion.</p>
+<div class="pf-stack pf-tags"><span>PHP</span><span>Tutor LMS</span><span>Certificates</span><span>Automation</span></div></article>
+<article class="pf-card pf-plugin">
+<div class="pf-icon"><svg width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg></div>
+<h3 class="pf-name">OFast Pipeline</h3><div class="pf-type">Lead Generation &amp; CRM Automation</div><p class="pf-desc">A specialized lead generation and sales pipeline automation plugin for WordPress. Built to capture inquiries, automate follow-ups, and manage high-intent deals &#8212; directly powers the lead capture and workflow engine behind MyPropertyHQ.</p>
+<div class="pf-stack pf-tags"><span>PHP</span><span>WordPress Plugin</span><span>CRM</span><span>Pipeline Automation</span><span>MyPropertyHQ Engine</span></div></article>
+<article class="pf-card pf-plugin">
+<div class="pf-icon"><svg width="22" height="22" fill="none" stroke="#fff" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
+<h3 class="pf-name">Ofast Market</h3><div class="pf-type">Digital Marketplace &amp; Multi-Vendor Engine</div><p class="pf-desc">A comprehensive digital marketplace plugin developed to rebuild and scale Ofastshop Digitals. Allows creators and vendors to buy and sell digital products, with built-in affiliate commission splits, vendor dashboards, LMS course delivery, and unified payment processing via modern REST APIs.</p>
+<div class="pf-stack pf-tags"><span>PHP</span><span>WordPress REST API</span><span>Multi-Vendor</span><span>Affiliates &amp; LMS</span><span>Payment Gateway</span></div></article>
+</div>
+</section>
